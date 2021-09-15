@@ -21,6 +21,8 @@ def read_cube(file):
     * 'atoms': Atoms object
     * 'all_info' : (x, y, z, iso_value) ndarray
     * 'xyz_vec': unit vector in the x, y and z direction
+    
+    Modified from https://wiki.fysik.dtu.dk/ase/ase/io/io.html#ase.io.read_cube_data
     """
     xyz_vec = [0, 0, 0]
 
