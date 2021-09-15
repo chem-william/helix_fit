@@ -3,7 +3,6 @@ import numpy as np
 from ase.units import Bohr
 from ase.atoms import Atoms
 from tqdm import tqdm
-# import libread_cube
 
 
 def _neg_atoms(line) -> bool:
@@ -72,7 +71,7 @@ def read_cube(file):
         atoms = Atoms(numbers=numbers, positions=positions, cell=cell)
         dct = {'atoms': atoms}
 
-        # It can not handle multiple datasets in the same .cube file
+        # It cannot handle multiple datasets in the same .cube file
         if neg_atoms:
             amount_datasets = int(fp.readline().split()[0])
             if amount_datasets > 1:
@@ -88,10 +87,6 @@ def read_cube(file):
         cube_data = np.array(cube_data)
 
         all_info = _get_info(cube_data, xyz_vec, shape)*Bohr
-        # all_info = np.array(
-        #         libread_cube.get_info(cube_data, xyz_vec, shape)
-        #     )
-        # all_info *= Bohr
 
         # Center points around origin
         all_info[:, :3] += origin
@@ -124,9 +119,7 @@ def _get_info(data, xyz_vec, dims):
 
 
 def main():
-    # file = os.getcwd() + "/helical.cube"
     file = os.getcwd() + "/helical_4cum.cube"
-    # file = "/home/william/Desktop/helical.cube"
 
     atoms, all_info, xyz_vec = read_cube(file)
 
