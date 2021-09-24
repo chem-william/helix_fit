@@ -38,11 +38,10 @@ def read_cube(file):
         neg_atoms = _neg_atoms(line)
 
         natoms = abs(int(line[0]))
-        end_index = None
-        if neg_atoms:
-            end_index = -1
 
-        origin = np.array([float(x) * Bohr for x in line[1:end_index]])
+        origin = np.array(
+            [float(line[1]), float(line[2]), float(line[3])]
+        ) * Bohr
         cell = np.empty((3, 3))
         shape = []
 
@@ -118,13 +117,3 @@ def _get_info(data, xyz_vec, dims):
     all_info = np.array(all_info)
 
     return all_info
-
-
-def main():
-    file = os.getcwd() + "/helical_4cum.cube"
-
-    atoms, all_info, xyz_vec = read_cube(file)
-
-
-if __name__ == '__main__':
-    exit(main())
